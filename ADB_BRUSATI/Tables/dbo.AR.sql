@@ -3,102 +3,120 @@ SET QUOTED_IDENTIFIER ON
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[AR] (
-		[Id_AR]                        [int] IDENTITY(1, 1) NOT NULL,
-		[Cd_AR]                        [varchar](20) COLLATE Latin1_General_CI_AS NOT NULL,
-		[Descrizione]                  [varchar](80) COLLATE Latin1_General_CI_AS NOT NULL,
-		[Note_AR]                      [varchar](max) COLLATE Latin1_General_CI_AS NULL,
-		[Cd_ARGruppo1]                 [char](3) COLLATE Latin1_General_CI_AS NULL,
-		[Cd_ARGruppo2]                 [char](3) COLLATE Latin1_General_CI_AS NULL,
-		[Cd_ARGruppo3]                 [char](3) COLLATE Latin1_General_CI_AS NULL,
-		[Cd_ARClasse1]                 [char](3) COLLATE Latin1_General_CI_AS NULL,
-		[Cd_ARClasse2]                 [char](3) COLLATE Latin1_General_CI_AS NULL,
-		[Cd_ARClasse3]                 [char](3) COLLATE Latin1_General_CI_AS NULL,
-		[Cd_Aliquota_A]                [char](3) COLLATE Latin1_General_CI_AS NULL,
-		[Cd_Aliquota_V]                [char](3) COLLATE Latin1_General_CI_AS NULL,
-		[Cd_CGConto_AI]                [char](12) COLLATE Latin1_General_CI_AS NULL,
-		[Cd_CGConto_VI]                [char](12) COLLATE Latin1_General_CI_AS NULL,
-		[Cd_CGConto_AE]                [char](12) COLLATE Latin1_General_CI_AS NULL,
-		[Cd_CGConto_VE]                [char](12) COLLATE Latin1_General_CI_AS NULL,
-		[Cd_ARStato]                   [char](3) COLLATE Latin1_General_CI_AS NULL,
-		[Cd_ARMarca]                   [varchar](20) COLLATE Latin1_General_CI_AS NULL,
-		[Cd_ARNomenclatura]            [char](8) COLLATE Latin1_General_CI_AS NULL,
-		[Cd_ARPrdClasse]               [char](5) COLLATE Latin1_General_CI_AS NULL,
-		[Id_ARCategoria]               [int] NULL,
-		[Modello]                      [varchar](20) COLLATE Latin1_General_CI_AS NOT NULL,
-		[Sconto]                       [varchar](10) COLLATE Latin1_General_CI_AS NOT NULL,
-		[Provvigione]                  [varchar](10) COLLATE Latin1_General_CI_AS NOT NULL,
-		[ScortaMinima]                 [numeric](18, 8) NOT NULL,
-		[ScortaMassima]                [numeric](18, 8) NOT NULL,
-		[LottoMinimo]                  [numeric](18, 8) NOT NULL,
-		[LottoRiordino]                [numeric](18, 8) NOT NULL,
-		[PesoLordo]                    [numeric](18, 4) NOT NULL,
-		[PesoNetto]                    [numeric](18, 4) NOT NULL,
-		[PesoFattore]                  [numeric](25, 12) NOT NULL,
-		[Altezza]                      [numeric](18, 4) NOT NULL,
-		[Lunghezza]                    [numeric](18, 4) NOT NULL,
-		[Larghezza]                    [numeric](18, 4) NOT NULL,
-		[DimensioniFattore]            [numeric](25, 12) NOT NULL,
-		[MrpGiorniRiordino]            [smallint] NOT NULL,
-		[MrpProduzioneMassima]         [numeric](18, 8) NOT NULL,
-		[CostoStandard]                [numeric](18, 6) NOT NULL,
-		[TipoValorizzazione]           [tinyint] NOT NULL,
-		[NoInventario]                 [bit] NOT NULL,
-		[NoGiornale]                   [bit] NOT NULL,
-		[ClasseAbc]                    [char](1) COLLATE Latin1_General_CI_AS NOT NULL,
-		[DBFantasma]                   [bit] NOT NULL,
-		[MrpIncludi]                   [bit] NOT NULL,
-		[MrpGiorniCopertura]           [smallint] NOT NULL,
-		[MrpResa]                      [smallint] NOT NULL,
-		[MrpLottoRiordino]             [bit] NOT NULL,
-		[MrpLottoMinimo]               [bit] NOT NULL,
-		[MrpPuntoRiordino]             [tinyint] NOT NULL,
-		[WebB2CPubblica]               [bit] NOT NULL,
-		[WebDescrizione]               [varchar](80) COLLATE Latin1_General_CI_AS NOT NULL,
-		[UserIns]                      [varchar](48) COLLATE Latin1_General_CI_AS NOT NULL,
-		[UserUpd]                      [varchar](48) COLLATE Latin1_General_CI_AS NOT NULL,
-		[TimeIns]                      [smalldatetime] NOT NULL,
-		[TimeUpd]                      [smalldatetime] NOT NULL,
-		[ts]                           [timestamp] NULL,
-		[MrpIgnoraDistinta]            [bit] NOT NULL,
-		[Cd_CAVda_VI]                  [char](12) COLLATE Latin1_General_CI_AS NULL,
-		[Cd_CAVda_VE]                  [char](12) COLLATE Latin1_General_CI_AS NULL,
-		[Cd_CAVda_AI]                  [char](12) COLLATE Latin1_General_CI_AS NULL,
-		[Cd_CAVda_AE]                  [char](12) COLLATE Latin1_General_CI_AS NULL,
-		[Fittizio]                     [bit] NOT NULL,
-		[Obsoleto]                     [bit] NOT NULL,
-		[DBKit]                        [bit] NOT NULL,
-		[AmsManaged]                   [bit] NOT NULL,
-		[Cd_VbReparto]                 [char](2) COLLATE Latin1_General_CI_AS NULL,
-		[VBDescrizione]                [varchar](30) COLLATE Latin1_General_CI_AS NULL,
-		[DescrizioneBreve]             [varchar](40) COLLATE Latin1_General_CI_AS NOT NULL,
-		[WebGiacenza]                  [numeric](18, 8) NOT NULL,
-		[WebInfoLink]                  [varchar](128) COLLATE Latin1_General_CI_AS NOT NULL,
-		[WebNote_AR]                   [varchar](max) COLLATE Latin1_General_CI_AS NULL,
-		[WebB2BPubblica]               [bit] NOT NULL,
-		[NoteOfferta]                  [varchar](max) COLLATE Latin1_General_CI_AS NULL,
-		[Ricarica]                     [varchar](15) COLLATE Latin1_General_CI_AS NOT NULL,
-		[MG_LottoObbligatorio]         [bit] NOT NULL,
-		[MG_GiacenzaNonNegativa]       [bit] NOT NULL,
-		[MG_MatricolaObbligatoria]     [bit] NOT NULL,
-		[Attributi]                    [xml](CONTENT [dbo].[Attributi]) NULL,
-		[NoteXML]                      [xml](CONTENT [dbo].[NoteXML]) NULL,
-		[PesoLordoMks]                 AS (isnull([PesoFattore]*[PesoLordo],(0))),
-		[PesoNettoMks]                 AS (isnull([PesoFattore]*[PesoNetto],(0))),
-		[AltezzaMks]                   AS (isnull([DimensioniFattore]*[Altezza],(0))),
-		[LunghezzaMks]                 AS (isnull([DimensioniFattore]*[Lunghezza],(0))),
-		[LarghezzaMks]                 AS (isnull([DimensioniFattore]*[Larghezza],(0))),
-		[VolumeMks]                    AS (isnull((((([DimensioniFattore]*[Altezza])*[DimensioniFattore])*[Lunghezza])*[DimensioniFattore])*[Larghezza],(0))),
-		[TipoGestComm]                 [tinyint] NOT NULL,
-		[IntraTipo]                    [char](1) COLLATE Latin1_General_CI_AS NOT NULL,
-		[Cd_IntraServizio]             [char](6) COLLATE Latin1_General_CI_AS NULL,
-		[Cd_ARMisura]                  [char](2) COLLATE Latin1_General_CI_AS NULL,
-		[FTE_CodiceTipo]               [varchar](35) COLLATE Latin1_General_CI_AS NULL,
-		[FTE_CodiceValore]             [varchar](35) COLLATE Latin1_General_CI_AS NULL,
-		[Cd_ARClasse12]                AS ([Cd_ARClasse1]+[Cd_ARClasse2]),
-		[Cd_ARClasse123]               AS (([Cd_ARClasse1]+[Cd_ARClasse2])+[Cd_ARClasse3]),
-		[Cd_ARGruppo12]                AS ([Cd_ARGruppo1]+[Cd_ARGruppo2]),
-		[Cd_ARGruppo123]               AS (([Cd_ARGruppo1]+[Cd_ARGruppo2])+[Cd_ARGruppo3]),
-		[Cd_Nazione_Origine]           [char](2) COLLATE Latin1_General_CI_AS NULL,
+		[Id_AR]                           [int] IDENTITY(1, 1) NOT NULL,
+		[Cd_AR]                           [varchar](20) COLLATE Latin1_General_CI_AS NOT NULL,
+		[Descrizione]                     [varchar](80) COLLATE Latin1_General_CI_AS NOT NULL,
+		[Note_AR]                         [varchar](max) COLLATE Latin1_General_CI_AS NULL,
+		[Cd_ARGruppo1]                    [char](3) COLLATE Latin1_General_CI_AS NULL,
+		[Cd_ARGruppo2]                    [char](3) COLLATE Latin1_General_CI_AS NULL,
+		[Cd_ARGruppo3]                    [char](3) COLLATE Latin1_General_CI_AS NULL,
+		[Cd_ARClasse1]                    [char](3) COLLATE Latin1_General_CI_AS NULL,
+		[Cd_ARClasse2]                    [char](3) COLLATE Latin1_General_CI_AS NULL,
+		[Cd_ARClasse3]                    [char](3) COLLATE Latin1_General_CI_AS NULL,
+		[Cd_Aliquota_A]                   [char](3) COLLATE Latin1_General_CI_AS NULL,
+		[Cd_Aliquota_V]                   [char](3) COLLATE Latin1_General_CI_AS NULL,
+		[Cd_CGConto_AI]                   [char](12) COLLATE Latin1_General_CI_AS NULL,
+		[Cd_CGConto_VI]                   [char](12) COLLATE Latin1_General_CI_AS NULL,
+		[Cd_CGConto_AE]                   [char](12) COLLATE Latin1_General_CI_AS NULL,
+		[Cd_CGConto_VE]                   [char](12) COLLATE Latin1_General_CI_AS NULL,
+		[Cd_ARStato]                      [char](3) COLLATE Latin1_General_CI_AS NULL,
+		[Cd_ARMarca]                      [varchar](20) COLLATE Latin1_General_CI_AS NULL,
+		[Cd_ARNomenclatura]               [char](8) COLLATE Latin1_General_CI_AS NULL,
+		[Cd_ARPrdClasse]                  [char](5) COLLATE Latin1_General_CI_AS NULL,
+		[Id_ARCategoria]                  [int] NULL,
+		[Modello]                         [varchar](20) COLLATE Latin1_General_CI_AS NOT NULL,
+		[Sconto]                          [varchar](10) COLLATE Latin1_General_CI_AS NOT NULL,
+		[Provvigione]                     [varchar](10) COLLATE Latin1_General_CI_AS NOT NULL,
+		[ScortaMinima]                    [numeric](18, 8) NOT NULL,
+		[ScortaMassima]                   [numeric](18, 8) NOT NULL,
+		[LottoMinimo]                     [numeric](18, 8) NOT NULL,
+		[LottoRiordino]                   [numeric](18, 8) NOT NULL,
+		[PesoLordo]                       [numeric](18, 4) NOT NULL,
+		[PesoNetto]                       [numeric](18, 4) NOT NULL,
+		[PesoFattore]                     [numeric](25, 12) NOT NULL,
+		[Altezza]                         [numeric](18, 4) NOT NULL,
+		[Lunghezza]                       [numeric](18, 4) NOT NULL,
+		[Larghezza]                       [numeric](18, 4) NOT NULL,
+		[DimensioniFattore]               [numeric](25, 12) NOT NULL,
+		[MrpGiorniRiordino]               [smallint] NOT NULL,
+		[MrpProduzioneMassima]            [numeric](18, 8) NOT NULL,
+		[CostoStandard]                   [numeric](18, 6) NOT NULL,
+		[TipoValorizzazione]              [tinyint] NOT NULL,
+		[NoInventario]                    [bit] NOT NULL,
+		[NoGiornale]                      [bit] NOT NULL,
+		[ClasseAbc]                       [char](1) COLLATE Latin1_General_CI_AS NOT NULL,
+		[DBFantasma]                      [bit] NOT NULL,
+		[MrpIncludi]                      [bit] NOT NULL,
+		[MrpGiorniCopertura]              [smallint] NOT NULL,
+		[MrpResa]                         [smallint] NOT NULL,
+		[MrpLottoRiordino]                [bit] NOT NULL,
+		[MrpLottoMinimo]                  [bit] NOT NULL,
+		[MrpPuntoRiordino]                [tinyint] NOT NULL,
+		[WebB2CPubblica]                  [bit] NOT NULL,
+		[WebDescrizione]                  [varchar](80) COLLATE Latin1_General_CI_AS NOT NULL,
+		[UserIns]                         [varchar](48) COLLATE Latin1_General_CI_AS NOT NULL,
+		[UserUpd]                         [varchar](48) COLLATE Latin1_General_CI_AS NOT NULL,
+		[TimeIns]                         [smalldatetime] NOT NULL,
+		[TimeUpd]                         [smalldatetime] NOT NULL,
+		[ts]                              [timestamp] NULL,
+		[MrpIgnoraDistinta]               [bit] NOT NULL,
+		[Cd_CAVda_VI]                     [char](12) COLLATE Latin1_General_CI_AS NULL,
+		[Cd_CAVda_VE]                     [char](12) COLLATE Latin1_General_CI_AS NULL,
+		[Cd_CAVda_AI]                     [char](12) COLLATE Latin1_General_CI_AS NULL,
+		[Cd_CAVda_AE]                     [char](12) COLLATE Latin1_General_CI_AS NULL,
+		[Fittizio]                        [bit] NOT NULL,
+		[Obsoleto]                        [bit] NOT NULL,
+		[DBKit]                           [bit] NOT NULL,
+		[AmsManaged]                      [bit] NOT NULL,
+		[Cd_VbReparto]                    [char](2) COLLATE Latin1_General_CI_AS NULL,
+		[VBDescrizione]                   [varchar](30) COLLATE Latin1_General_CI_AS NULL,
+		[DescrizioneBreve]                [varchar](40) COLLATE Latin1_General_CI_AS NOT NULL,
+		[WebGiacenza]                     [numeric](18, 8) NOT NULL,
+		[WebInfoLink]                     [varchar](128) COLLATE Latin1_General_CI_AS NOT NULL,
+		[WebNote_AR]                      [varchar](max) COLLATE Latin1_General_CI_AS NULL,
+		[WebB2BPubblica]                  [bit] NOT NULL,
+		[NoteOfferta]                     [varchar](max) COLLATE Latin1_General_CI_AS NULL,
+		[Ricarica]                        [varchar](15) COLLATE Latin1_General_CI_AS NOT NULL,
+		[MG_LottoObbligatorio]            [bit] NOT NULL,
+		[MG_GiacenzaNonNegativa]          [bit] NOT NULL,
+		[MG_MatricolaObbligatoria]        [bit] NOT NULL,
+		[Attributi]                       [xml](CONTENT [dbo].[Attributi]) NULL,
+		[NoteXML]                         [xml](CONTENT [dbo].[NoteXML]) NULL,
+		[PesoLordoMks]                    AS (isnull([PesoFattore]*[PesoLordo],(0))),
+		[PesoNettoMks]                    AS (isnull([PesoFattore]*[PesoNetto],(0))),
+		[AltezzaMks]                      AS (isnull([DimensioniFattore]*[Altezza],(0))),
+		[LunghezzaMks]                    AS (isnull([DimensioniFattore]*[Lunghezza],(0))),
+		[LarghezzaMks]                    AS (isnull([DimensioniFattore]*[Larghezza],(0))),
+		[VolumeMks]                       AS (isnull((((([DimensioniFattore]*[Altezza])*[DimensioniFattore])*[Lunghezza])*[DimensioniFattore])*[Larghezza],(0))),
+		[TipoGestComm]                    [tinyint] NOT NULL,
+		[IntraTipo]                       [char](1) COLLATE Latin1_General_CI_AS NOT NULL,
+		[Cd_IntraServizio]                [char](6) COLLATE Latin1_General_CI_AS NULL,
+		[Cd_ARMisura]                     [char](2) COLLATE Latin1_General_CI_AS NULL,
+		[FTE_CodiceTipo]                  [varchar](35) COLLATE Latin1_General_CI_AS NULL,
+		[FTE_CodiceValore]                [varchar](35) COLLATE Latin1_General_CI_AS NULL,
+		[Cd_ARClasse12]                   AS ([Cd_ARClasse1]+[Cd_ARClasse2]),
+		[Cd_ARClasse123]                  AS (([Cd_ARClasse1]+[Cd_ARClasse2])+[Cd_ARClasse3]),
+		[Cd_ARGruppo12]                   AS ([Cd_ARGruppo1]+[Cd_ARGruppo2]),
+		[Cd_ARGruppo123]                  AS (([Cd_ARGruppo1]+[Cd_ARGruppo2])+[Cd_ARGruppo3]),
+		[Cd_Nazione_Origine]              [char](2) COLLATE Latin1_General_CI_AS NULL,
+		[x_LAV_TaglioLaser]               [bit] NOT NULL,
+		[x_LAV_Seghetto]                  [bit] NOT NULL,
+		[x_LAV_Piegatura_Punzonatura]     [bit] NOT NULL,
+		[x_LAV_Saldatura]                 [bit] NOT NULL,
+		[x_LAV_Saldatura_Certificata]     [bit] NOT NULL,
+		[x_LAV_Analisi_Iniziale]          [bit] NOT NULL,
+		[x_LAV_Verifica_Lavorazione]      [bit] NOT NULL,
+		[x_LAV_Controllo_Finale]          [bit] NOT NULL,
+		[x_LAV_Controllo_Visivo]          [bit] NOT NULL,
+		[x_LAV_Foratura_Maschiatura]      [bit] NOT NULL,
+		[x_LAV_Lavaggio_Macchina]         [bit] NOT NULL,
+		[x_LAV_Lavaggio_Macchina_Txt]     [varchar](20) COLLATE Latin1_General_CI_AS NULL,
+		[x_LAV_Montaggio]                 [bit] NOT NULL,
+		[x_LAV_Montaggio_Txt]             [varchar](20) COLLATE Latin1_General_CI_AS NULL,
+		[x_LAV_Finitura]                  [bit] NOT NULL,
+		[x_LAV_Finitura_Txt]              [varchar](20) COLLATE Latin1_General_CI_AS NULL,
+		[x_LAV_Varie]                     [bit] NOT NULL,
+		[x_LAV_Varie_Txt]                 [varchar](20) COLLATE Latin1_General_CI_AS NULL,
 		CONSTRAINT [IK_AR]
 		UNIQUE
 		NONCLUSTERED
@@ -703,6 +721,76 @@ ALTER TABLE [dbo].[AR]
 	ADD
 	CONSTRAINT [DF_AR_WebInfoLink]
 	DEFAULT ('') FOR [WebInfoLink]
+GO
+ALTER TABLE [dbo].[AR]
+	ADD
+	CONSTRAINT [DF_AR_x_LAV_Analisi_Iniziale]
+	DEFAULT ((0)) FOR [x_LAV_Analisi_Iniziale]
+GO
+ALTER TABLE [dbo].[AR]
+	ADD
+	CONSTRAINT [DF_AR_x_LAV_Controllo_Finale]
+	DEFAULT ((0)) FOR [x_LAV_Controllo_Finale]
+GO
+ALTER TABLE [dbo].[AR]
+	ADD
+	CONSTRAINT [DF_AR_x_LAV_Controllo_Visivo]
+	DEFAULT ((0)) FOR [x_LAV_Controllo_Visivo]
+GO
+ALTER TABLE [dbo].[AR]
+	ADD
+	CONSTRAINT [DF_AR_x_LAV_Finitura]
+	DEFAULT ((0)) FOR [x_LAV_Finitura]
+GO
+ALTER TABLE [dbo].[AR]
+	ADD
+	CONSTRAINT [DF_AR_x_LAV_Foratura_Maschiatura]
+	DEFAULT ((0)) FOR [x_LAV_Foratura_Maschiatura]
+GO
+ALTER TABLE [dbo].[AR]
+	ADD
+	CONSTRAINT [DF_AR_x_LAV_Lavaggio_Macchina]
+	DEFAULT ((0)) FOR [x_LAV_Lavaggio_Macchina]
+GO
+ALTER TABLE [dbo].[AR]
+	ADD
+	CONSTRAINT [DF_AR_x_LAV_Montaggio]
+	DEFAULT ((0)) FOR [x_LAV_Montaggio]
+GO
+ALTER TABLE [dbo].[AR]
+	ADD
+	CONSTRAINT [DF_AR_x_LAV_Piegatura_Punzonatura]
+	DEFAULT ((0)) FOR [x_LAV_Piegatura_Punzonatura]
+GO
+ALTER TABLE [dbo].[AR]
+	ADD
+	CONSTRAINT [DF_AR_x_LAV_Saldatura]
+	DEFAULT ((0)) FOR [x_LAV_Saldatura]
+GO
+ALTER TABLE [dbo].[AR]
+	ADD
+	CONSTRAINT [DF_AR_x_LAV_Saldatura_Certificata]
+	DEFAULT ((0)) FOR [x_LAV_Saldatura_Certificata]
+GO
+ALTER TABLE [dbo].[AR]
+	ADD
+	CONSTRAINT [DF_AR_x_LAV_Seghetto]
+	DEFAULT ((0)) FOR [x_LAV_Seghetto]
+GO
+ALTER TABLE [dbo].[AR]
+	ADD
+	CONSTRAINT [DF_AR_x_LAV_TaglioLaser]
+	DEFAULT ((0)) FOR [x_LAV_TaglioLaser]
+GO
+ALTER TABLE [dbo].[AR]
+	ADD
+	CONSTRAINT [DF_AR_x_LAV_Varie]
+	DEFAULT ((0)) FOR [x_LAV_Varie]
+GO
+ALTER TABLE [dbo].[AR]
+	ADD
+	CONSTRAINT [DF_AR_x_LAV_Verifica_Lavorazione]
+	DEFAULT ((0)) FOR [x_LAV_Verifica_Lavorazione]
 GO
 ALTER TABLE [dbo].[AR]
 	WITH NOCHECK
