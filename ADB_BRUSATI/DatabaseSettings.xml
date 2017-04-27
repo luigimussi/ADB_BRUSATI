@@ -1,7 +1,7 @@
 <DatabaseSettings>
   <Collation>SQL_Latin1_General_CP1_CI_AS</Collation>
-  <ServerVersion>Sql2014</ServerVersion>
+  <ServerVersion>Sql2012</ServerVersion>
   <ServerName>ESSW\MSSQLSERVER_2014</ServerName>
   <DatabaseName>ADB_BRUSATI</DatabaseName>
-  <DatabaseInformation Version="2" />
+  <DatabaseInformation Version="3" />
 </DatabaseSettings>
